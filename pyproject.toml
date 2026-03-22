@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "presidio-hardened-flask"
+version = "0.1.0"
+description = "A hardened replacement layer for Flask with automatic security defaults"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [{ name = "Presidio Security", email = "security@presidio.dev" }]
+keywords = ["flask", "security", "hardening", "middleware", "owasp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Flask",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware",
+]
+dependencies = [
+    "flask>=2.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/presidio-security/presidio-hardened-flask"
+Repository = "https://github.com/presidio-security/presidio-hardened-flask"
+Issues = "https://github.com/presidio-security/presidio-hardened-flask/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/presidio_flask"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py39"
+src = ["src", "tests"]
+line-length = 99
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "S"]
+ignore = ["S104", "S311"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "S105", "S106"]
+
+[tool.coverage.run]
+source = ["presidio_flask"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
