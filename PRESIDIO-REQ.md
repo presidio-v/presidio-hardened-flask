@@ -26,4 +26,3 @@ Users write: `from presidio_flask import Flask, Blueprint, request` (and similar
 - LICENSE = MIT
 - Version = 0.1.0
 
-Deliver the complete working project ready for GitHub publish.
