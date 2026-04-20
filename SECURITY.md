@@ -8,29 +8,18 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in presidio-hardened-flask, please report it responsibly.
-
-**Do NOT open a public GitHub issue for security vulnerabilities.**
-
-Instead, please email: **security@presidio.dev**
+Please report security vulnerabilities by opening a private GitHub Security Advisory
+(via the "Security" tab → "Report a vulnerability") rather than a public issue.
 
 Include:
-- A description of the vulnerability
+
+- Description of the vulnerability
 - Steps to reproduce
-- Potential impact assessment
+- Potential impact
 - Suggested fix (if any)
 
-### Response Timeline
-
-- **Acknowledgment**: Within 48 hours
-- **Initial Assessment**: Within 5 business days
-- **Fix/Patch**: Within 30 days for critical issues
-
-### Disclosure Policy
-
-- We follow **coordinated disclosure** practices.
-- We will credit reporters (unless anonymity is requested) in the release notes.
-- We aim to release patches before any public disclosure.
+You will receive an acknowledgement within 5 business days. We aim to release a patch
+within 30 days of a confirmed vulnerability.
 
 ## Security Features
 
@@ -61,3 +50,9 @@ Development dependencies are isolated in the `[dev]` extra.
 3. Review the default CSP and adjust for your application's needs
 4. Monitor the Presidio security logs for anomalous activity
 5. Keep dependencies updated — enable Dependabot or similar tools
+
+## Software Development Lifecycle
+
+This repository is developed under the Presidio hardened-family SDLC. The public report
+— scope, standards mapping, threat-model gates, and supply-chain controls — is at
+<https://github.com/presidio-v/presidio-hardened-docs/blob/main/sdlc/sdlc-report.md>.
