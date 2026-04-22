@@ -1,7 +1,7 @@
 # presidio-hardened-flask
 
-[![CI](https://github.com/presidio-security/presidio-hardened-flask/actions/workflows/ci.yml/badge.svg)](https://github.com/presidio-security/presidio-hardened-flask/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/presidio-security/presidio-hardened-flask/actions/workflows/codeql.yml/badge.svg)](https://github.com/presidio-security/presidio-hardened-flask/actions/workflows/codeql.yml)
+[![CI](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/ci.yml/badge.svg)](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/codeql.yml/badge.svg)](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/codeql.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -166,7 +166,7 @@ app.config.update(
 
 ```bash
 # Clone and install
-git clone https://github.com/presidio-security/presidio-hardened-flask.git
+git clone https://github.com/presidio-v/presidio-hardened-flask.git
 cd presidio-hardened-flask
 uv venv .venv && source .venv/bin/activate
 uv pip install -e ".[dev]"
