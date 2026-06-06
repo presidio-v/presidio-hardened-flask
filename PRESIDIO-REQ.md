@@ -24,5 +24,12 @@ Users write: `from presidio_flask import Flask, Blueprint, request` (and similar
 - Black + ruff enforced
 - README.md with side-by-side examples: plain Flask vs presidio-hardened-flask showing security improvements (e.g. headers, rate limit, redaction)
 - LICENSE = MIT
-- Version = 0.1.0
+- Version = 0.2.0 (v0.2.0 remediates audit findings: sink redaction, no dangerous SECRET_KEY fallback for CSRF, pip-audit, doc alignment, version bump)
+
+## v0.2.0 Security Remediations Implemented
+- Sink-enforced redaction via RedactingFilter on app.logger (all logs scrubbed).
+- CSRF protection no longer has "presidio-dev-key" dangerous fallback; requires explicit strong SECRET_KEY (raises on misconfig).
+- pip-audit added to dev and CI.
+- Redaction/sanitize coverage and logging improved.
+- All mandatory extensions from this REQ are delivered in v0.2 with accurate documentation.
 
