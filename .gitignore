@@ -9,7 +9,3 @@ build/
 .pytest_cache/
 .ruff_cache/
 *.egg
-
-# Local IDE / tooling (never commit)
-.specify/
-.vscode/
