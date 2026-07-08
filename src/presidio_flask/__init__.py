@@ -16,7 +16,7 @@ while automatically receiving security hardening.
 
 from __future__ import annotations
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 # ---------------------------------------------------------------------------
 # Re-exports: users can ``from presidio_flask import ...`` instead of flask

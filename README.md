@@ -1,11 +1,17 @@
 # presidio-hardened-flask
 
-[![CI](https://github.com/presidio-security/presidio-hardened-flask/actions/workflows/ci.yml/badge.svg)](https://github.com/presidio-security/presidio-hardened-flask/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/presidio-security/presidio-hardened-flask/actions/workflows/codeql.yml/badge.svg)](https://github.com/presidio-security/presidio-hardened-flask/actions/workflows/codeql.yml)
+[![CI](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/ci.yml/badge.svg)](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/codeql.yml/badge.svg)](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/codeql.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A **hardened drop-in replacement** for Flask that automatically applies production-grade security defaults. Change one import line and your existing Flask app gets security headers, rate limiting, CSRF protection, secret redaction, input sanitization, and more.
+A **hardened drop-in replacement** for Flask that automatically applies production-grade security defaults (v0.2.0). Change one import line and your existing Flask app gets security headers, rate limiting, CSRF protection (no weak defaults), secret redaction (sink-enforced), input sanitization, and more.
+
+## v0.2.0 Security Updates
+- Sink redaction now enforced at the logging sink (RedactingFilter on app.logger).
+- CSRF no longer accepts the dangerous built-in "presidio-dev-key" fallback — requires a strong `SECRET_KEY` (raises clear error otherwise).
+- pip-audit integrated in dev dependencies and CI.
+- All major audit findings from third-party review remediated; docs (SECURITY, PRESIDIO-REQ, README) updated to match implemented behavior.
 
 ## Quick Start
 
@@ -43,16 +49,16 @@ def index():
 
 That's it. Your app now automatically receives:
 
-| Feature | What It Does |
+| Feature | What It Does (v0.2.0) |
 |---|---|
 | **Security Headers** | CSP, HSTS, X-Frame-Options, Permissions-Policy, and more on every response |
 | **Rate Limiting** | 60 req/min per IP with exponential backoff (configurable) |
-| **CSRF Protection** | Sec-Fetch-Site aware + token-based fallback for mutating requests |
-| **Secret Redaction** | Passwords, API keys, and tokens are redacted in logs |
+| **CSRF Protection** | Sec-Fetch-Site aware + token-based fallback (v0.2: requires strong SECRET_KEY; no 'presidio-dev-key' fallback) |
+| **Secret Redaction** | Passwords, API keys, tokens redacted in before_request logs + sink-level RedactingFilter on app.logger for *all* records |
 | **Session Hardening** | Secure, HttpOnly, SameSite=Lax cookies by default |
-| **Input Sanitization** | Blocks SQL injection, XSS, and path traversal attempts |
-| **CVE Quick-Check** | Warns at startup if key dependencies have known vulnerabilities |
-| **Security Logging** | Structured Presidio event logging for all requests |
+| **Input Sanitization** | Blocks SQL injection, XSS, and path traversal attempts (abort 400) |
+| **CVE Quick-Check** | Warns at startup + pip-audit in [dev] and CI (v0.2) |
+| **Security Logging** | Structured Presidio event logging (with automatic sink redaction) |
 
 ## Side-by-Side Comparison
 
@@ -166,7 +172,7 @@ app.config.update(
 
 ```bash
 # Clone and install
-git clone https://github.com/presidio-security/presidio-hardened-flask.git
+git clone https://github.com/presidio-v/presidio-hardened-flask.git
 cd presidio-hardened-flask
 uv venv .venv && source .venv/bin/activate
 uv pip install -e ".[dev]"
