@@ -24,7 +24,7 @@ def test_full_stack_post_json(client):
 def test_version_importable():
     from presidio_flask import __version__
 
-    assert __version__ == "0.1.0"
+    assert __version__ == "0.2.0"
 
 
 def test_flask_subclass():

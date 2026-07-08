@@ -43,7 +43,14 @@ def _validate_token(secret: str, token: str) -> bool:
 def generate_csrf_token() -> str:
     from flask import current_app
 
-    secret = current_app.config.get("SECRET_KEY", "presidio-dev-key")
+    secret = current_app.config.get("SECRET_KEY")
+    if not secret or secret == "presidio-dev-key":
+        # v0.2: no dangerous fallback; require explicit strong SECRET_KEY
+        raise RuntimeError(
+            "PRESIDIO CSRF requires a strong SECRET_KEY in app.config "
+            "(never use the old 'presidio-dev-key' default). "
+            "Set app.config['SECRET_KEY'] = 'your-strong-random-value'."
+        )
     token = _generate_token(secret)
     session["_presidio_csrf"] = token
     return token
@@ -65,7 +72,10 @@ def register_csrf_protection(app: Flask) -> None:
 
         # Token-based fallback
         token = request.headers.get("X-CSRF-Token") or request.form.get("_csrf_token") or ""
-        secret = app.config.get("SECRET_KEY", "presidio-dev-key")
+        secret = app.config.get("SECRET_KEY")
+        if not secret or secret == "presidio-dev-key":
+            app.logger.error("PRESIDIO CSRF misconfigured: no strong SECRET_KEY set")
+            abort(500)
         if token and _validate_token(secret, token):
             g.presidio_csrf_ok = True
             return
