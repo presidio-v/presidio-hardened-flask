@@ -36,9 +36,9 @@ Issues = "https://github.com/presidio-v/presidio-hardened-flask/issues"
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.0",
+    "pytest>=8.4.2",
     "pytest-cov>=7.1.0",
-    "ruff>=0.4",
+    "ruff>=0.15.10",
     "pip-audit>=2.7.0",
 ]
 
