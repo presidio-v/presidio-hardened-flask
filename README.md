@@ -30,6 +30,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def index():
     return "Hello, world!"
@@ -41,6 +42,7 @@ def index():
 from presidio_flask import Flask, jsonify, request
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def index():
@@ -112,6 +114,7 @@ app.logger.info("Request: %s", request.json)
 
 ```python
 from presidio_flask import redact_dict
+
 print(redact_dict({"password": "hunter2", "api_key": "sk-123"}))
 # {"password": "***REDACTED***", "api_key": "***REDACTED***"}
 ```
@@ -141,25 +144,19 @@ All features are enabled by default but fully configurable:
 app = Flask(__name__)
 app.config.update(
     # Rate limiting
-    PRESIDIO_RATE_LIMIT=100,           # requests per window (default: 60)
-    PRESIDIO_RATE_WINDOW=120,          # window in seconds (default: 60)
+    PRESIDIO_RATE_LIMIT=100,  # requests per window (default: 60)
+    PRESIDIO_RATE_WINDOW=120,  # window in seconds (default: 60)
     PRESIDIO_RATE_LIMIT_ENABLED=True,  # disable entirely if False
-
     # CSRF
     PRESIDIO_CSRF_ENABLED=True,
-
     # Input sanitization
     PRESIDIO_SANITIZE_ENABLED=True,
-
     # Secret redaction
     PRESIDIO_REDACTION_ENABLED=True,
-
     # Security logging
     PRESIDIO_LOGGING_ENABLED=True,
-
     # CVE check on startup
     PRESIDIO_CVE_CHECK=True,
-
     # Custom security headers (merge with/override defaults)
     PRESIDIO_SECURITY_HEADERS={
         "X-Frame-Options": "SAMEORIGIN",
