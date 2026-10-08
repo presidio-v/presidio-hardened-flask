@@ -46,6 +46,15 @@ This package provides the following security hardening for Flask applications:
 7. **CVE Quick-Check** — Startup check + pip-audit in dev/CI (v0.2)
 8. **Security Event Logging** — Structured logging (with automatic sink redaction)
 
+
+## Software Development Lifecycle
+
+This repository is on the **open-source baseline** of the PRESIDIO hardened-family SDLC
+([report](https://github.com/presidio-v/presidio-hardened-docs/blob/main/sdlc/sdlc-report.md) ·
+[PDF](https://github.com/presidio-v/presidio-hardened-docs/blob/main/sdlc/sdlc-report.pdf)).
+The controls measured for it, and any open gaps, are its row in the
+[applicability matrix](https://github.com/presidio-v/presidio-hardened-docs/blob/main/sdlc/applicability.md).
+
 ## Dependencies
 
 We keep our dependency surface minimal:
