@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/ci.yml/badge.svg)](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/codeql.yml/badge.svg)](https://github.com/presidio-v/presidio-hardened-flask/actions/workflows/codeql.yml)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A **hardened drop-in replacement** for Flask that automatically applies production-grade security defaults (v0.2.0). Change one import line and your existing Flask app gets security headers, rate limiting, CSRF protection (no weak defaults), secret redaction (sink-enforced), input sanitization, and more.

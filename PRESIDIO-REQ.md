@@ -16,7 +16,7 @@ Users write: `from presidio_flask import Flask, Blueprint, request` (and similar
 - Full GitHub security files: SECURITY.md, .github/dependabot.yml, .github/workflows/codeql.yml + pytest + ruff workflow
 
 ## Technical Requirements
-- Python 3.9+
+- Python 3.10+
 - Modern pyproject.toml + hatchling/uv
 - src/presidio_flask/__init__.py layout with re-exports, custom Flask subclass, and auto-applied middleware
 - Do NOT copy Flask source; wrap/extend via subclassing Flask, before/after request hooks, and helpers
